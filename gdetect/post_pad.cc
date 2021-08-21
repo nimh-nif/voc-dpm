@@ -18,11 +18,11 @@ using namespace std;
 // matlab entry point
 // B = post_pad(A, pady, padx, val)
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) { 
-  const double pady = mxGetScalar(prhs[1]);
-  const double padx = mxGetScalar(prhs[2]);
+  const int pady = mxGetScalar(prhs[1]);
+  const int padx = mxGetScalar(prhs[2]);
   const double val = mxGetScalar(prhs[3]);
   const mwSize *A_dims = mxGetDimensions(prhs[0]);
-  const mwSize B_dims[] = { A_dims[0] + pady, A_dims[1] + padx };
+  const int B_dims[] = { A_dims[0] + pady, A_dims[1] + padx };
   mxArray *mx_B = mxCreateNumericArray(2, B_dims, mxDOUBLE_CLASS, mxREAL);
   double *B = (double *)mxGetPr(mx_B);
   const double *A = (double *)mxGetPr(prhs[0]);

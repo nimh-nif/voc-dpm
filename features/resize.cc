@@ -93,7 +93,7 @@ void resize1dtran(double *src, int sheight, double *dst, int dheight,
 // returns resized image
 mxArray *resize(const mxArray *mxsrc, const mxArray *mxscale) {
   double *src = (double *)mxGetPr(mxsrc);
-  const int *sdims = mxGetDimensions(mxsrc);
+  const mwSize *sdims = mxGetDimensions(mxsrc);
   if (mxGetNumberOfDimensions(mxsrc) != 3 || 
       mxGetClassID(mxsrc) != mxDOUBLE_CLASS)
     mexErrMsgTxt("Invalid input");  

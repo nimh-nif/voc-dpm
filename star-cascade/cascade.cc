@@ -50,7 +50,7 @@ static inline int square(int x) { return x*x; }
 // compute convolution value of filter B on data A at a single 
 // location (x, y)
 static inline double conv(int x, int y, 
-                          const float *A, const mwSize *A_dims,
+                          const float *A, const int *A_dims,
                           const float *B, const mwSize *B_dims,
                           int num_features) {
   double val = 0;
@@ -94,7 +94,7 @@ static inline double conv(int x, int y,
 
 // compute convolution value for a root filter at a fixed location
 static inline double rconv(int L, int filterind, int x, int y, int pca) {
-  const mwSize *A_dims = MODEL->featdims[L];
+  const int *A_dims = MODEL->featdims[L];
   const float *A = MODEL->feat[pca][L];
   const mwSize *B_dims = MODEL->rootfilterdims[filterind];
   const float *B = MODEL->rootfilters[filterind];
@@ -113,7 +113,7 @@ static inline double pconvdt(int L,
                              int ystart, int yend,
                              int pca, double defthresh) 
 {
-  const mwSize *A_dims = MODEL->featdims[L];
+  const int *A_dims = MODEL->featdims[L];
   const float *A = MODEL->feat[pca][L];
   const mwSize *B_dims = MODEL->partfilterdims[filterind];
   const float *B = MODEL->partfilters[pca][filterind];
@@ -192,7 +192,7 @@ static inline double partscore(int L, int defindex, int pfind,
   ystart = (ystart < 0 ? 0 : ystart);
   int yend = y+S;
 
-  const mwSize *A_dims = MODEL->featdims[L];
+  const int *A_dims = MODEL->featdims[L];
   const mwSize *B_dims = MODEL->partfilterdims[pfind];
   yend = (B_dims[0] + yend > A_dims[0])
           ? A_dims[0] - B_dims[0]
