@@ -36,8 +36,8 @@
 all:
 	matlab -nodesktop -nodisplay -nojvm -r "disp('building...'); compile; disp('done!'); quit;"
 
-.PHONY: clean
-clean: list-targets-default
+clean:
+	rm -rf bin/*.mex*
 
 #
 # Includes
